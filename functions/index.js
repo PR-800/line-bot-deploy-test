@@ -9,8 +9,11 @@ const gemini = require("./utils/gemini");
 
 
 app.post('/webhook', async (req, res) => {
-  console.log("Webhook is working: ", JSON.stringify(req.body, null, 2));
+  console.log("📥 ได้รับ LINE webhook payload:");
+  console.log(JSON.stringify(req.body, null, 2));
+
   const events = req.body.events;
+  
   if (Array.isArray(events)) {
     for (const event of events) {
       try {
