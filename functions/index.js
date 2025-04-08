@@ -5,6 +5,8 @@ const port = 3000;
 const line = require("./utils/line");
 const gemini = require("./utils/gemini");
 
+app.use(bodyParser.json());
+
 app.post('/webhook', async (req, res) => {
   const events = req.body.events;
     for (const event of events) {

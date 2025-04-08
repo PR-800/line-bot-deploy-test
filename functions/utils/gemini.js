@@ -2,15 +2,14 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 const textOnly = async (prompt) => {
-  // For text-only input, use the gemini-1.5-flash-8b model
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
   const result = await model.generateContent(prompt);
   return result.response.text();
 };
 
 const multimodal = async (imageBinary) => {
   // For text-and-image input (multimodal), use the gemini-1.5-flash-8b model
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
   const prompt = "ช่วยบรรยายภาพนี้ให้หน่อย";
   const mimeType = "image/png";
 
@@ -30,8 +29,7 @@ const multimodal = async (imageBinary) => {
 };
 
 const chat = async (prompt) => {
-  // For text-only input, use the gemini-1.5-flash-8b model
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
   const chat = model.startChat({
     history: [
       {
