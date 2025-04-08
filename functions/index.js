@@ -9,7 +9,7 @@ const gemini = require("./utils/gemini");
 
 
 app.post('/webhook', async (req, res) => {
-  console.log("📥 ได้รับ LINE webhook payload:");
+  console.log("LINE webhook payload: ");
   console.log(JSON.stringify(req.body, null, 2));
 
   const events = req.body.events;
@@ -44,7 +44,8 @@ app.post('/webhook', async (req, res) => {
     }
   }
   else {
-    console.warn("Events not found:", req.body);
+    console.error("Events not found:", events);
+    return res.status(400).send("Invalid payload");
   }
   res.send(req.method);
 });
